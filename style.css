@@ -259,3 +259,169 @@ a { color: inherit; text-decoration: none; }
   .photo, .photo-placeholder { width: 180px; height: 180px; }
   .stats { gap: 24px; }
 }
+
+/* =========================================================
+   9. Project cards (Step 2)
+   ========================================================= */
+.section-head { margin-bottom: 40px; }
+.section-sub { color: var(--text-muted); margin-top: 8px; max-width: 60ch; }
+
+/* Shared card look: white, hairline border, lifts + lime border on hover */
+.card {
+  display: block;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+  transform: translateY(-3px);
+  border-color: var(--lime);
+  box-shadow: 0 12px 32px rgba(11, 11, 12, 0.06);
+}
+
+.card-kicker {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--lime-deep);
+  margin-bottom: 10px;
+}
+.card h3 { font-size: 1.25rem; line-height: 1.3; margin-bottom: 8px; }
+.card-hook { color: var(--text-muted); margin-bottom: 20px; }
+
+/* The one big number per card, with a lime highlighter stroke */
+.metric {
+  display: inline-block;
+  font-size: 1.9rem;
+  font-weight: 700;
+  line-height: 1.1;
+  background: linear-gradient(transparent 62%, var(--lime) 62%);
+  padding: 0 2px;
+  align-self: flex-start;   /* in flex cards, hug the text instead of stretching */
+}
+.metric-label { display: block; font-size: 0.85rem; color: var(--text-muted); margin: 6px 0 20px; }
+
+/* Tech tags (pills) */
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+.tag {
+  font-size: 0.78rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--tint);
+  border: 1px solid var(--border);
+}
+
+.card-link { font-weight: 600; font-size: 0.9rem; }
+.card:hover .card-link { color: var(--lime-deep); }
+
+/* Featured card: text left, mini flow diagram right */
+.card-featured {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 20px;
+  background:
+    radial-gradient(ellipse 60% 80% at 100% 50%, rgba(198, 244, 50, 0.16), transparent 70%),
+    var(--white);
+}
+.card-featured h3 { font-size: 1.6rem; }
+
+/* Row of secondary proof points inside the featured card */
+.proof { display: flex; gap: 28px; flex-wrap: wrap; margin-bottom: 20px; }
+.proof div { border-left: 2px solid var(--lime); padding-left: 12px; }
+.proof strong { display: block; font-size: 1.1rem; }
+.proof span { font-size: 0.8rem; color: var(--text-muted); }
+
+/* Mini flow diagram: Slack -> Agent -> Tools -> Answer */
+.flow { display: flex; flex-direction: column; gap: 10px; }
+.flow-step {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 0.85rem;
+}
+.flow-step b { display: block; font-size: 0.9rem; }
+.flow-step span { color: var(--text-muted); font-size: 0.78rem; }
+.flow-step.is-core { background: var(--black); color: var(--white); border-color: var(--black); }
+.flow-step.is-core span { color: rgba(255, 255, 255, 0.65); }
+.flow-arrow { text-align: center; color: var(--lime-deep); font-size: 0.8rem; line-height: 1; }
+
+/* Three smaller cards side by side */
+.card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.card-grid .card { display: flex; flex-direction: column; }
+.card-grid .card-link { margin-top: auto; }   /* pin link to card bottom */
+
+/* =========================================================
+   10. Case study (project detail) pages
+   ========================================================= */
+.case-hero {
+  padding: 64px 0 48px;
+  background:
+    radial-gradient(ellipse 50% 80% at 90% 0%, rgba(198, 244, 50, 0.22), transparent 70%),
+    var(--white);
+  border-bottom: 1px solid var(--border);
+}
+.crumbs { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; }
+.crumbs a:hover { color: var(--lime-deep); }
+.case-hero h1 { font-size: clamp(2rem, 5vw, 2.8rem); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 12px; }
+.case-lede { font-size: 1.15rem; color: var(--text-muted); max-width: 62ch; margin-bottom: 28px; }
+
+/* Role / stack / timeline row */
+.meta { display: flex; flex-wrap: wrap; gap: 32px; font-size: 0.9rem; }
+.meta dt { color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; }
+.meta dd { font-weight: 500; }
+
+/* Big result numbers */
+.results { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 40px 0 8px; }
+.result { border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; background: var(--white); }
+.result .metric { font-size: 1.6rem; }
+.result span:not(.metric) { display: block; font-size: 0.85rem; color: var(--text-muted); margin-top: 6px; }
+
+/* Readable article column */
+.case-body { max-width: 720px; padding: 24px 0 72px; }
+.case-body h2 { font-size: 1.35rem; margin: 40px 0 12px; }
+.case-body p, .case-body li { color: rgba(11, 11, 12, 0.82); }
+.case-body ul { padding-left: 20px; display: grid; gap: 8px; }
+.note {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  border-left: 2px solid var(--border);
+  padding-left: 14px;
+  margin-top: 16px;
+}
+
+/* "What didn't work" callout — the rigor signal */
+.callout {
+  background: #F6F7F3;
+  border-left: 3px solid var(--lime);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 18px 20px;
+  margin-top: 12px;
+}
+
+/* Horizontal pipeline of steps */
+.pipeline { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; }
+.pipeline .tag { background: var(--white); font-size: 0.82rem; }
+.pipeline i { color: var(--lime-deep); font-style: normal; }
+
+/* Prev / next navigation at the bottom */
+.case-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  border-top: 1px solid var(--border);
+  padding-top: 24px;
+  font-weight: 600;
+}
+.case-nav a:hover { color: var(--lime-deep); }
+
+@media (max-width: 760px) {
+  .card-featured { grid-template-columns: 1fr; }
+  .card-grid { grid-template-columns: 1fr; }
+  .results { grid-template-columns: 1fr; }
+}

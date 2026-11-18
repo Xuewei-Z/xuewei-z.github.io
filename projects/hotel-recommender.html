@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel recommender system — Xuewei Zhong</title>
+  <meta name="description" content="Do review sentiment and timing make hotel recommendations better? I compared three model families on ~12M reviews to find out.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <!-- ===================== Navbar (same as home) ===================== -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="../index.html" class="nav-logo"><span class="logo-mark"></span>Xuewei Zhong</a>
+      <div class="nav-links">
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#focus">Focus</a>
+        <a href="../index.html#about">About</a>
+        <a href="../assets/resume.pdf" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Résumé</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===================== Case header ===================== -->
+  <header class="case-hero">
+    <div class="container">
+      <p class="crumbs"><a href="../index.html">Home</a> / <a href="../index.html#projects">Projects</a> / Hotel recommender</p>
+      <p class="eyebrow">Data science · SJSU</p>
+      <h1>Hotel recommender system</h1>
+      <p class="case-lede">Do review sentiment and timing make hotel recommendations better? I compared three model families on ~12M reviews to find out.</p>
+      <dl class="meta">
+        <div><dt>Data</dt><dd>HotelRec, ~12M reviews</dd></div>
+        <div><dt>Program</dt><dd>SJSU</dd></div>
+        <div><dt>Year</dt><dd>2024</dd></div>
+      </dl>
+    </div>
+  </header>
+
+  <!-- ===================== Case body ===================== -->
+  <main class="container">
+    <div class="results">
+      <div class="result"><span class="metric">−11–15%</span><span>RMSE vs. SVD</span></div>
+      <div class="result"><span class="metric">3 / 3</span><span>user segments improved</span></div>
+      <div class="result"><span class="metric">~12M</span><span>reviews</span></div>
+    </div>
+
+    <article class="case-body">
+      <h2>The problem</h2>
+      <p>Most recommenders only learn from ratings. Reviews also carry sentiment, and they happen at a point in time. The question was whether those signals improve predictions.</p>
+
+      <h2>What I did</h2>
+      <ul>
+        <li>Built and compared three approaches: SVD, neural collaborative filtering (NCF), and a hybrid model.</li>
+        <li>Engineered review-sentiment and time features.</li>
+        <li>Evaluated each user segment separately, instead of relying on a single average.</li>
+      </ul>
+
+      <h2>Result</h2>
+      <p>Adding sentiment and time features cut RMSE by 11–15% compared with SVD, in all three user segments.</p>
+
+      <h2>What didn't work</h2>
+      <div class="callout">
+        <p>NCF on its own gave no gain over SVD. The improvement came from the features, not from a more complex model.</p>
+      </div>
+
+      <h2>Stack</h2>
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">TensorFlow / Keras</span>
+        <span class="tag">Recommender systems</span>
+        <span class="tag">SVD</span>
+        <span class="tag">Neural CF</span>
+        <span class="tag">Feature engineering</span>
+      </div>
+
+      <!-- Prev / next -->
+      <div class="case-nav">
+        <a href="../index.html#projects">← All projects</a>
+        <a href="viki.html">Next: Viki →</a>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      © 2026 Xuewei Zhong · Hand-built with HTML &amp; CSS · Hosted on GitHub Pages
+    </div>
+  </footer>
+
+</body>
+</html>

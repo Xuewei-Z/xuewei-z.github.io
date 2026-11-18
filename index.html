@@ -75,8 +75,95 @@
   <!-- ============ Placeholder sections (built in Step 2+) ============ -->
   <section id="projects" class="section">
     <div class="container">
-      <p class="section-label">01 — Selected work</p>
-      <h2>Project cards go here (Step 2)</h2>
+      <div class="section-head">
+        <p class="section-label">01 — Selected work</p>
+        <h2>Systems I've built</h2>
+        <p class="section-sub">From a production AI agent to research on auction design. Each project opens into a short case study.</p>
+      </div>
+
+      <!-- Featured card: Viki (the one production system) -->
+      <a href="projects/viki.html" class="card card-featured">
+        <div>
+          <p class="card-kicker">Featured · In production</p>
+          <h3>Viki — an AI agent for the whole company's Slack</h3>
+          <p class="card-hook">Answers "who owns this, and where is it?" across 145+ GitHub repos, Linear, Slack, Drive, Figma, and Canva.</p>
+
+          <span class="metric">80%</span>
+          <span class="metric-label">of employees use it</span>
+
+          <div class="proof">
+            <div><strong>~10 hrs</strong><span>saved / person / month</span></div>
+            <div><strong>91–94%</strong><span>routing accuracy, eval-gated</span></div>
+          </div>
+
+          <div class="tags">
+            <span class="tag">Tool calling</span>
+            <span class="tag">RAG</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">Azure</span>
+          </div>
+          <span class="card-link">Read case study →</span>
+        </div>
+
+        <!-- Mini flow diagram, pure HTML/CSS (no internal screenshots) -->
+        <div class="flow" aria-hidden="true">
+          <div class="flow-step"><b>Slack question</b><span>"Who owns the billing service?"</span></div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step is-core"><b>Agent core</b><span>tool calling · 3-round re-planning · memory</span></div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step"><b>Tools + two-stage RAG</b><span>GitHub · Linear · Slack · Drive</span></div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step"><b>Cited answer</b><span>or an honest "I don't know"</span></div>
+        </div>
+      </a>
+
+      <!-- Three secondary cards -->
+      <div class="card-grid">
+
+        <a href="projects/fine-tuning.html" class="card">
+          <p class="card-kicker">02 · LLM engineering</p>
+          <h3>End-to-end LLM fine-tuning &amp; serving</h3>
+          <p class="card-hook">Can a small open model replace a paid API? I built the pipeline to find out.</p>
+          <span class="metric">61% → 86%</span>
+          <span class="metric-label">groundedness after LoRA fine-tuning</span>
+          <div class="tags">
+            <span class="tag">LoRA</span>
+            <span class="tag">Hugging Face</span>
+            <span class="tag">LLM-as-a-judge</span>
+            <span class="tag">GKE</span>
+          </div>
+          <span class="card-link">Read case study →</span>
+        </a>
+
+        <a href="projects/ethereum-auctions.html" class="card">
+          <p class="card-kicker">03 · Research · Finance</p>
+          <h3>Execution auctions — Ethereum Foundation × SJSU</h3>
+          <p class="card-hook">Can a new auction design reduce the speed advantage of fast bidders?</p>
+          <span class="metric">1,000x+ → ~15%</span>
+          <span class="metric-label">profit gap, real data vs. simulated design</span>
+          <div class="tags">
+            <span class="tag">SQL (BigQuery)</span>
+            <span class="tag">Simulation</span>
+            <span class="tag">Market design</span>
+          </div>
+          <span class="card-link">Read case study →</span>
+        </a>
+
+        <a href="projects/hotel-recommender.html" class="card">
+          <p class="card-kicker">04 · Data science</p>
+          <h3>Hotel recommender system</h3>
+          <p class="card-hook">Do review sentiment and timing make recommendations better?</p>
+          <span class="metric">−11–15%</span>
+          <span class="metric-label">RMSE vs. SVD, on ~12M reviews</span>
+          <div class="tags">
+            <span class="tag">TensorFlow</span>
+            <span class="tag">Recommenders</span>
+            <span class="tag">Feature engineering</span>
+          </div>
+          <span class="card-link">Read case study →</span>
+        </a>
+
+      </div>
     </div>
   </section>
 

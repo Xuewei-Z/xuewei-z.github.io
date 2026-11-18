@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Viki — an AI agent for the whole company's Slack — Xuewei Zhong</title>
+  <meta name="description" content="An internal Slack agent that answers project and status questions across GitHub (145+ repos), Linear, Slack, Google Drive &amp; Workspace, Figma, and Canva.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <!-- ===================== Navbar (same as home) ===================== -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="../index.html" class="nav-logo"><span class="logo-mark"></span>Xuewei Zhong</a>
+      <div class="nav-links">
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#focus">Focus</a>
+        <a href="../index.html#about">About</a>
+        <a href="../assets/resume.pdf" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Résumé</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===================== Case header ===================== -->
+  <header class="case-hero">
+    <div class="container">
+      <p class="crumbs"><a href="../index.html">Home</a> / <a href="../index.html#projects">Projects</a> / Viki</p>
+      <p class="eyebrow">Featured · In production · Venera AI</p>
+      <h1>Viki — an AI agent for the whole company's Slack</h1>
+      <p class="case-lede">An internal Slack agent that answers project and status questions across GitHub (145+ repos), Linear, Slack, Google Drive &amp; Workspace, Figma, and Canva.</p>
+      <dl class="meta">
+        <div><dt>Role</dt><dd>Owner — design, build, deploy</dd></div>
+        <div><dt>Team</dt><dd>Lead of 3–5</dd></div>
+        <div><dt>Timeline</dt><dd>2026 – present</dd></div>
+        <div><dt>Status</dt><dd>In production</dd></div>
+      </dl>
+    </div>
+  </header>
+
+  <!-- ===================== Case body ===================== -->
+  <main class="container">
+    <div class="results">
+      <div class="result"><span class="metric">80%</span><span>of employees use it</span></div>
+      <div class="result"><span class="metric">~10 hrs</span><span>saved per person, per month</span></div>
+      <div class="result"><span class="metric">91–94%</span><span>routing accuracy, gating every release</span></div>
+    </div>
+
+    <article class="case-body">
+      <p class="note">This is a high-level account. It leaves out internal data, code, and screenshots.</p>
+
+      <h2>The problem</h2>
+      <p>Teams work across U.S. and international time zones. Finding out who owns a project, or where it stands, usually meant asking in chat and waiting hours for a reply. The answer was already somewhere — in code, tickets, or past threads — but spread across six tools.</p>
+
+      <h2>What I built</h2>
+      <ul>
+        <li><b>Agent core:</b> native tool calling with a bounded 3-round re-planning loop and a latency budget, so the agent can try again without running forever.</li>
+        <li><b>Memory:</b> session memory with query rewriting, so follow-up questions like "and who reviewed it?" make sense.</li>
+        <li><b>Grounded answers:</b> two-stage RAG with an explicit "I don't know" fallback. Citations come only from retrieved data, so the agent can't invent links.</li>
+        <li><b>Team workflows:</b> leads @mention Viki in channels to recap discussions and turn meeting notes into Linear tickets.</li>
+        <li><b>Safe actions:</b> tools exposed through an MCP server, as the base for human-approved actions.</li>
+      </ul>
+
+      <h2>How I measured it</h2>
+      <p>Every release is gated by an eval suite (91–94% routing accuracy). I also mine per-query logs to tell real regressions apart from capability gaps — questions the agent was never built to answer.</p>
+
+      <h2>What didn't work</h2>
+      <div class="callout">
+        <p>Retrieval-score confidence looked like an easy way to decide when an answer was trustworthy. I tested it before building on it and found it unreliable, so I dropped it.</p>
+      </div>
+
+      <h2>Shipping it</h2>
+      <p>Deployed on Azure with FastAPI and Docker. CI/CD on GitHub Actions rolls back automatically if a health check fails. Timeouts and retries handle a high-variance LLM backend.</p>
+
+      <h2>Stack</h2>
+      <div class="tags">
+        <span class="tag">FastAPI</span>
+        <span class="tag">Azure AI Foundry</span>
+        <span class="tag">OpenAI</span>
+        <span class="tag">Tool calling</span>
+        <span class="tag">RAG</span>
+        <span class="tag">Embeddings</span>
+        <span class="tag">SQLite</span>
+        <span class="tag">Docker</span>
+        <span class="tag">GitHub Actions</span>
+        <span class="tag">MCP</span>
+      </div>
+
+      <!-- Prev / next -->
+      <div class="case-nav">
+        <a href="../index.html#projects">← All projects</a>
+        <a href="fine-tuning.html">Next: LLM fine-tuning →</a>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      © 2026 Xuewei Zhong · Hand-built with HTML &amp; CSS · Hosted on GitHub Pages
+    </div>
+  </footer>
+
+</body>
+</html>

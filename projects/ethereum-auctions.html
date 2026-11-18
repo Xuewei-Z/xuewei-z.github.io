@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Execution auctions research — Xuewei Zhong</title>
+  <meta name="description" content="Can a new auction design reduce the speed advantage of fast bidders? I used real Ethereum auction data to calibrate a simulation and test it.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <!-- ===================== Navbar (same as home) ===================== -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="../index.html" class="nav-logo"><span class="logo-mark"></span>Xuewei Zhong</a>
+      <div class="nav-links">
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#focus">Focus</a>
+        <a href="../index.html#about">About</a>
+        <a href="../assets/resume.pdf" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Résumé</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===================== Case header ===================== -->
+  <header class="case-hero">
+    <div class="container">
+      <p class="crumbs"><a href="../index.html">Home</a> / <a href="../index.html#projects">Projects</a> / Execution auctions</p>
+      <p class="eyebrow">Research · Finance · Ethereum Foundation × SJSU CAMCOS</p>
+      <h1>Execution auctions research</h1>
+      <p class="case-lede">Can a new auction design reduce the speed advantage of fast bidders? I used real Ethereum auction data to calibrate a simulation and test it.</p>
+      <dl class="meta">
+        <div><dt>Sponsor</dt><dd>Ethereum Foundation</dd></div>
+        <div><dt>Program</dt><dd>SJSU CAMCOS</dd></div>
+        <div><dt>Year</dt><dd>2025</dd></div>
+      </dl>
+    </div>
+  </header>
+
+  <!-- ===================== Case body ===================== -->
+  <main class="container">
+    <div class="results">
+      <div class="result"><span class="metric">1,000x+</span><span>profit gap between builder types in real data</span></div>
+      <div class="result"><span class="metric">~15%</span><span>profit gap under the proposed design</span></div>
+      <div class="result"><span class="metric">216K</span><span>simulated auctions</span></div>
+    </div>
+
+    <article class="case-body">
+      <h2>The problem</h2>
+      <p>In Ethereum's MEV-boost auctions, block builders bid for the right to build each block. Bidders with lower latency can wait and bid at the last moment — a "timing game" that gives them a large edge. A proposed auction design aims to cut that edge.</p>
+
+      <h2>What I did</h2>
+      <ul>
+        <li>Queried and analyzed MEV-boost auction data in BigQuery.</li>
+        <li>Used it to calibrate an agent-based simulation of the proposed design, with two builder types.</li>
+        <li>Ran 216K simulated auctions and compared profits between the two types.</li>
+      </ul>
+
+      <h2>Result</h2>
+      <p>In real data, the profit gap between the two builder types was over 1,000x. Under the proposed design, it shrank to about 15%.</p>
+
+      <h2>What this does and doesn't show</h2>
+      <div class="callout">
+        <p>This is a simulation, so it suggests rather than proves: sealed auctions appear to weaken timing games under the calibrated builder types.</p>
+      </div>
+
+      <h2>Why I like this project</h2>
+      <p>It joins my two backgrounds. Finance taught me how much a small edge in a market is worth; statistics gave me the tools to test whether a design actually removes it.</p>
+
+      <h2>Stack</h2>
+      <div class="tags">
+        <span class="tag">SQL</span>
+        <span class="tag">BigQuery</span>
+        <span class="tag">Python</span>
+        <span class="tag">Agent-based simulation</span>
+        <span class="tag">Market design</span>
+      </div>
+
+      <!-- Prev / next -->
+      <div class="case-nav">
+        <a href="../index.html#projects">← All projects</a>
+        <a href="hotel-recommender.html">Next: Hotel recommender →</a>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      © 2026 Xuewei Zhong · Hand-built with HTML &amp; CSS · Hosted on GitHub Pages
+    </div>
+  </footer>
+
+</body>
+</html>

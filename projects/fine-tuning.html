@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>End-to-end LLM fine-tuning &amp; serving pipeline — Xuewei Zhong</title>
+  <meta name="description" content="Can a small open model replace a paid LLM API? I built every stage from raw web pages to a served model to find out.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <!-- ===================== Navbar (same as home) ===================== -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="../index.html" class="nav-logo"><span class="logo-mark"></span>Xuewei Zhong</a>
+      <div class="nav-links">
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#focus">Focus</a>
+        <a href="../index.html#about">About</a>
+        <a href="../assets/resume.pdf" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Résumé</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===================== Case header ===================== -->
+  <header class="case-hero">
+    <div class="container">
+      <p class="crumbs"><a href="../index.html">Home</a> / <a href="../index.html#projects">Projects</a> / LLM fine-tuning</p>
+      <p class="eyebrow">LLM engineering · Venera AI</p>
+      <h1>End-to-end LLM fine-tuning &amp; serving pipeline</h1>
+      <p class="case-lede">Can a small open model replace a paid LLM API? I built every stage from raw web pages to a served model to find out.</p>
+      <dl class="meta">
+        <div><dt>Role</dt><dd>Built data-to-model stages</dd></div>
+        <div><dt>Model</dt><dd>Qwen2.5-1.5B</dd></div>
+        <div><dt>Hardware</dt><dd>Single T4 GPU</dd></div>
+        <div><dt>Timeline</dt><dd>2026</dd></div>
+      </dl>
+    </div>
+  </header>
+
+  <!-- ===================== Case body ===================== -->
+  <main class="container">
+    <div class="results">
+      <div class="result"><span class="metric">61% → 86%</span><span>groundedness after fine-tuning</span></div>
+      <div class="result"><span class="metric">2.4×</span><span>faster after 4-bit quantization</span></div>
+      <div class="result"><span class="metric">3.1×</span><span>smaller, no meaningful quality loss</span></div>
+    </div>
+
+    <article class="case-body">
+      <h2>The problem</h2>
+      <p>Paid LLM APIs are easy to start with, but they cost money on every call and keep the model outside your control. The question was whether a small open model, trained on the right data, could do the job well enough.</p>
+
+      <h2>The pipeline</h2>
+      <div class="pipeline"><span class="tag">Web crawler</span> <i>→</i> <span class="tag">Text cleaning</span> <i>→</i> <span class="tag">410-example SFT dataset</span> <i>→</i> <span class="tag">LoRA fine-tuning</span> <i>→</i> <span class="tag">LLM-as-a-judge eval</span> <i>→</i> <span class="tag">4-bit GGUF</span> <i>→</i> <span class="tag">llama.cpp + RAG</span> <i>→</i> <span class="tag">GKE</span></div>
+
+      <h2>What I built</h2>
+      <ul>
+        <li><b>Data:</b> a custom web crawler and text cleaning, turned into a 410-example distilled SFT dataset.</li>
+        <li><b>Training:</b> LoRA fine-tuning of Qwen2.5-1.5B on a single T4 GPU.</li>
+        <li><b>Evaluation:</b> an LLM-as-a-judge harness to score groundedness before and after training.</li>
+        <li><b>Serving:</b> 4-bit quantization, served with llama.cpp behind RAG, deployed to GKE with Docker and CI/CD.</li>
+      </ul>
+
+      <h2>How I measured it</h2>
+      <p>Groundedness rose from 61% to 86%. After quantization the model ran 2.4× faster and was 3.1× smaller, with no meaningful loss in quality on the same evaluation.</p>
+
+      <h2>Why it matters</h2>
+      <p>RAG supplies the facts and fine-tuning shapes the behavior. Splitting the job this way lets a 1.5B model run on cheap hardware while staying grounded.</p>
+
+      <h2>Stack</h2>
+      <div class="tags">
+        <span class="tag">PyTorch</span>
+        <span class="tag">Hugging Face Transformers</span>
+        <span class="tag">PEFT / LoRA</span>
+        <span class="tag">LLM-as-a-judge</span>
+        <span class="tag">GGUF</span>
+        <span class="tag">llama.cpp</span>
+        <span class="tag">RAG</span>
+        <span class="tag">Docker</span>
+        <span class="tag">GKE</span>
+        <span class="tag">GitHub Actions</span>
+      </div>
+
+      <!-- Prev / next -->
+      <div class="case-nav">
+        <a href="../index.html#projects">← All projects</a>
+        <a href="ethereum-auctions.html">Next: Execution auctions →</a>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      © 2026 Xuewei Zhong · Hand-built with HTML &amp; CSS · Hosted on GitHub Pages
+    </div>
+  </footer>
+
+</body>
+</html>
