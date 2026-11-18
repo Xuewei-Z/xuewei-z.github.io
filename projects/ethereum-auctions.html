@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Execution auctions research — Xuewei Zhong</title>
-  <meta name="description" content="Can a new auction design reduce the speed advantage of fast bidders? I used real Ethereum auction data to calibrate a simulation and test it.">
+  <title>Do sealed auctions stop timing games on Ethereum? — Xuewei Zhong</title>
+  <meta name="description" content="A research project sponsored by the Ethereum Foundation. I pulled real block-auction data in BigQuery and used it to calibrate a simulation of a proposed auction design.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -30,11 +30,12 @@
     <div class="container">
       <p class="crumbs"><a href="../index.html">Home</a> / <a href="../index.html#projects">Projects</a> / Execution auctions</p>
       <p class="eyebrow">Research · Finance · Ethereum Foundation × SJSU CAMCOS</p>
-      <h1>Execution auctions research</h1>
-      <p class="case-lede">Can a new auction design reduce the speed advantage of fast bidders? I used real Ethereum auction data to calibrate a simulation and test it.</p>
+      <h1>Do sealed auctions stop timing games on Ethereum?</h1>
+      <p class="case-lede">A research project sponsored by the Ethereum Foundation. I pulled real block-auction data in BigQuery and used it to calibrate a simulation of a proposed auction design.</p>
       <dl class="meta">
+        <div><dt>My role</dt><dd>Data analysis &amp; simulation setup</dd></div>
+        <div><dt>Team</dt><dd>12 students, 2 PIs</dd></div>
         <div><dt>Sponsor</dt><dd>Ethereum Foundation</dd></div>
-        <div><dt>Program</dt><dd>SJSU CAMCOS</dd></div>
         <div><dt>Year</dt><dd>2025</dd></div>
       </dl>
     </div>
@@ -43,32 +44,74 @@
   <!-- ===================== Case body ===================== -->
   <main class="container">
     <div class="results">
-      <div class="result"><span class="metric">1,000x+</span><span>profit gap between builder types in real data</span></div>
-      <div class="result"><span class="metric">~15%</span><span>profit gap under the proposed design</span></div>
-      <div class="result"><span class="metric">216K</span><span>simulated auctions</span></div>
+      <div class="result"><span class="metric">1,000x+</span><span>profit gap between two real builders</span></div>
+      <div class="result"><span class="metric">~15%</span><span>gap between the two builder types in the simulated sealed auction</span></div>
+      <div class="result"><span class="metric">216K</span><span>simulated auctions, about one month of blocks</span></div>
     </div>
 
     <article class="case-body">
-      <h2>The problem</h2>
-      <p>In Ethereum's MEV-boost auctions, block builders bid for the right to build each block. Bidders with lower latency can wait and bid at the last moment — a "timing game" that gives them a large edge. A proposed auction design aims to cut that edge.</p>
+      <h2>The question</h2>
+      <p>Every 12 seconds, Ethereum picks a proposer for the next block. Most proposers sell the right to build it to specialist <b>builders</b>, who bid in a live auction (MEV-Boost). Builders with faster hardware or better location can wait, watch rivals' bids, and bid at the last moment. These <b>timing games</b> reward speed over skill and push the network toward a few fast players.</p>
+      <p><b>Execution auctions</b> are one proposed fix: sell building rights well in advance through <b>sealed bids</b>, so waiting gives no extra information. We asked whether that design actually weakens the speed advantage.</p>
 
-      <h2>What I did</h2>
+      <h2>My role</h2>
       <ul>
-        <li>Queried and analyzed MEV-boost auction data in BigQuery.</li>
-        <li>Used it to calibrate an agent-based simulation of the proposed design, with two builder types.</li>
-        <li>Ran 216K simulated auctions and compared profits between the two types.</li>
+        <li><b>Data:</b> queried and analyzed historical MEV-Boost auction data in BigQuery.</li>
+        <li><b>Simulation setup:</b> helped design the auction simulation and set its parameters from what the data showed.</li>
+        <li>The game-theory proofs were led by teammates.</li>
       </ul>
 
-      <h2>Result</h2>
-      <p>In real data, the profit gap between the two builder types was over 1,000x. Under the proposed design, it shrank to about 15%.</p>
+      <h2>What the data showed</h2>
+      <p>Using public Flashbots MEV-Boost data for blocks won from December 2023 to February 2024, we picked two contrasting builders:</p>
+      <ul>
+        <li><b>beaverbuild.org:</b> won 131,544 blocks (about 32% of the period), with roughly twice the bid variance.</li>
+        <li><b>bobTheBuilder:</b> won 178 blocks, with steadier, slower-looking bidding.</li>
+      </ul>
+      <p>Both bid about 88% of their valuation on average, yet beaverbuild's total profit was over 1,000 times larger.</p>
+
+      <h2>The simulation</h2>
+      <p>A sealed-bid, first-price auction with two kinds of builders:</p>
+      <ul>
+        <li><b>Non-reactive (slow):</b> bids early.</li>
+        <li><b>Reactive (fast):</b> waits, then slightly overbids the highest bid it has seen, but risks missing the cutoff.</li>
+      </ul>
+      <p>Each builder has a speed, a valuation (same distribution for everyone, as a proxy for skill), and a bid proportion. Bid proportions, variance, and timing were matched to the real data above.</p>
+
+      <h2>Results</h2>
+      <p>Over 216,000 two-player rounds, the slow builder earned only about 15% less than the fast one, compared with a 1,000x+ gap in real data.</p>
+      <p>The chart below holds the fast builder at 70% and varies how much the slow builder bids. Speed only clearly wins when the slow builder bids too little or too much:</p>
+
+      <figure class="bars" aria-label="Profit advantage by the slow builder's bid proportion">
+        <div class="bars-title">Slow builder's bid proportion → who earned more, and by how much</div>
+        <div class="bar-row"><span class="bar-x">40%</span><span class="bar-track"><span class="bar bar-r" style="width:22.8%"></span></span><span class="bar-v">Fast +18.7%</span></div>
+        <div class="bar-row"><span class="bar-x">45%</span><span class="bar-track"><span class="bar bar-r" style="width:13.9%"></span></span><span class="bar-v">Fast +11.4%</span></div>
+        <div class="bar-row"><span class="bar-x">50%</span><span class="bar-track"><span class="bar bar-r" style="width:7.2%"></span></span><span class="bar-v">Fast +5.9%</span></div>
+        <div class="bar-row"><span class="bar-x">55%</span><span class="bar-track"><span class="bar bar-r" style="width:2.1%"></span></span><span class="bar-v">Fast +1.7%</span></div>
+        <div class="bar-row"><span class="bar-x">60%</span><span class="bar-track"><span class="bar bar-n" style="width:1.5%"></span></span><span class="bar-v">Slow +1.2%</span></div>
+        <div class="bar-row"><span class="bar-x">65%</span><span class="bar-track"><span class="bar bar-n" style="width:3.6%"></span></span><span class="bar-v">Slow +2.9%</span></div>
+        <div class="bar-row"><span class="bar-x">70%</span><span class="bar-track"><span class="bar bar-n" style="width:2.3%"></span></span><span class="bar-v">Slow +1.9%</span></div>
+        <div class="bar-row"><span class="bar-x">75%</span><span class="bar-track"><span class="bar bar-r" style="width:1.8%"></span></span><span class="bar-v">Fast +1.5%</span></div>
+        <div class="bar-row"><span class="bar-x">80%</span><span class="bar-track"><span class="bar bar-r" style="width:15.0%"></span></span><span class="bar-v">Fast +12.3%</span></div>
+        <div class="bar-row"><span class="bar-x">85%</span><span class="bar-track"><span class="bar bar-r" style="width:40.8%"></span></span><span class="bar-v">Fast +33.4%</span></div>
+        <div class="bar-row"><span class="bar-x">90%</span><span class="bar-track"><span class="bar bar-r" style="width:100.0%"></span></span><span class="bar-v">Fast +81.8%</span></div>
+        <figcaption><span class="key key-r"></span>Fast (reactive) builder earned more <span class="key key-n"></span>Slow (non-reactive) builder earned more. Fast builder fixed at 70% bid proportion.</figcaption>
+      </figure>
+
+      <h2>Takeaways</h2>
+      <ul>
+        <li><b>How much you bid matters more than when you bid</b> in a sealed auction.</li>
+        <li>The best bid proportion rises as more builders compete, as classical auction theory predicts. In 5v5 simulations it clustered around 90%, close to what real builders bid (85–89%).</li>
+      </ul>
 
       <h2>What this does and doesn't show</h2>
       <div class="callout">
-        <p>This is a simulation, so it suggests rather than proves: sealed auctions appear to weaken timing games under the calibrated builder types.</p>
+        <p>The simulations support, but do not prove, that sealed auctions discourage timing games. Valuations are assumed exact and identical, strategies are simple rules rather than solved equilibria, and two players are a loose stand-in for the real market. The real 1,000x gap may also reflect skill differences the model doesn't capture.</p>
       </div>
 
       <h2>Why I like this project</h2>
       <p>It joins my two backgrounds. Finance taught me how much a small edge in a market is worth; statistics gave me the tools to test whether a design actually removes it.</p>
+
+      <p class="note">Team project: SJSU CAMCOS, Fall 2024 and Spring 2025 cohorts. PIs: Dashiell Fryer and Yan X Zhang. Sponsor: Ethereum Foundation. <a href="https://hackmd.io/MVDCR95XQXutuKb1NuTtWw?view" target="_blank" rel="noopener">Read the full write-up ↗</a></p>
 
       <h2>Stack</h2>
       <div class="tags">
@@ -76,7 +119,7 @@
         <span class="tag">BigQuery</span>
         <span class="tag">Python</span>
         <span class="tag">Agent-based simulation</span>
-        <span class="tag">Market design</span>
+        <span class="tag">Auction theory</span>
       </div>
 
       <!-- Prev / next -->
