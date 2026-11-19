@@ -445,3 +445,28 @@ a { color: inherit; text-decoration: none; }
 .case-body p, .case-body ul { margin-bottom: 12px; }
 .case-body .callout p { margin-bottom: 0; }
 .bars-title { margin-bottom: 4px; }
+
+/* =========================================================
+   11. Tighter vertical rhythm (shorter pages)
+   ========================================================= */
+.section { padding: 64px 0; }
+.section-head { margin-bottom: 28px; }
+.hero { padding: 72px 0 64px; }
+.case-hero { padding: 40px 0 32px; }
+.crumbs { margin-bottom: 12px; }
+.case-lede { margin-bottom: 20px; }
+.meta { gap: 24px; }
+.results { margin: 28px 0 0; }
+.result { padding: 16px; }
+.case-body { padding: 8px 0 48px; }
+.case-body h2 { margin: 28px 0 8px; font-size: 1.25rem; }
+.case-body p, .case-body ul { margin-bottom: 10px; }
+.case-body ul { gap: 4px; }
+.bars { margin: 12px 0 12px; gap: 4px; }
+.inline-link { text-decoration: underline; text-decoration-color: var(--lime); text-underline-offset: 3px; text-decoration-thickness: 2px; }
+.inline-link:hover { color: var(--lime-deep); }
+.footer { padding: 40px 0; }
+@media (max-width: 760px) {
+  .hero { padding: 40px 0 48px; }
+  .section { padding: 48px 0; }
+}
