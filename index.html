@@ -12,6 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- All styling lives in style.css -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,11 +20,12 @@
   <!-- ===================== Navbar ===================== -->
   <nav class="nav">
     <div class="container nav-inner">
-      <a href="#home" class="nav-logo"><span class="logo-mark"></span>Xuewei Zhong</a>
+      <a href="#home" class="nav-logo"><span class="logo-badge" aria-hidden="true">XZ</span><span class="logo-text"><span class="logo-name">Xuewei Zhong</span><span class="logo-sub">AI Engineering · Data Science</span></span></a>
       <div class="nav-links">
-        <a href="#projects">Projects</a>
-        <a href="#focus">Focus</a>
         <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
         <a href="assets/resume.pdf" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Résumé</a>
       </div>
     </div>
@@ -33,58 +35,80 @@
   <header id="home" class="hero">
     <div class="container hero-inner">
 
-      <!-- Left column: who you are + proof points + actions -->
+      <!-- Left column: name, role, one line, skills, actions -->
       <div class="hero-text">
-        <p class="eyebrow">AI Engineer · Statistics · Finance</p>
+        <p class="eyebrow">AI Engineer · Data Science · Credit Risk</p>
         <h1>Xuewei Zhong</h1>
-        <p class="tagline">
-          Finance → Statistics → AI. I build LLM systems that can be
-          <span class="hl">measured</span>.
-        </p>
+        <p class="tagline">Turning data into <span class="hl">decisions</span> people can trust.</p>
 
-        <!-- Three proof points (Harrison-style badges) -->
         <ul class="stats">
-          <li><strong>80%</strong><span>of colleagues use the AI agent I built</span></li>
-          <li><strong>5+ yrs</strong><span>credit risk &amp; insurance</span></li>
-          <li><strong>M.S.</strong><span>Statistics, San José State</span></li>
+          <li><strong>80%</strong><span>company-wide AI agent adoption</span></li>
+          <li><strong>5+ yrs</strong><span>risk &amp; credit analysis</span></li>
+          <li><strong>M.S.</strong><span>Statistics, SJSU</span></li>
         </ul>
 
         <div class="hero-actions">
-          <a href="#projects" class="btn btn-primary">View projects</a>
+          <a href="#about" class="btn btn-primary">About me ↓</a>
           <a href="assets/resume.pdf" class="btn btn-outline" target="_blank" rel="noopener">Download résumé</a>
         </div>
 
         <div class="socials">
-          <a href="https://www.linkedin.com/in/xuewei-verity" target="_blank" rel="noopener">LinkedIn ↗</a>
-          <a href="https://github.com/xuewei-z" target="_blank" rel="noopener">GitHub ↗</a>
-          <a href="https://huggingface.co/Xuewei-Z" target="_blank" rel="noopener">Hugging Face ↗</a>
-          <a href="mailto:xuewei.zhong02@gmail.com">Email ↗</a>
+          <span class="location"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="currentColor"><path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/><path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/></svg>San Jose, CA</span>
+          <a class="icon-link" href="https://www.linkedin.com/in/xuewei-verity" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="currentColor"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/></svg></a>
+          <a class="icon-link" href="https://github.com/xuewei-z" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/></svg></a>
+          <a class="icon-link" href="https://huggingface.co/Xuewei-Z" target="_blank" rel="noopener" aria-label="Hugging Face" title="Hugging Face"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor"><path d="M1.4446 11.5059c0 1.1021.1673 2.1585.4847 3.1563-.0378-.0028-.0691-.0058-.1058-.0058-.4209 0-.8015.16-1.0704.4512-.3454.3737-.4984.8335-.4316 1.293a1.576 1.576 0 0 0 .2148.5978c-.2319.1864-.4018.4456-.4844.7578-.0646.2448-.131.7543.2149 1.2794a1.4552 1.4552 0 0 0-.0625.1055c-.208.3923-.2207.8372-.0371 1.25.2783.6258.9696 1.1175 2.3126 1.6467.8356.3292 1.5988.5411 1.6056.543 1.1046.2847 2.104.4277 2.969.4277 1.4173 0 2.4754-.3849 3.1525-1.1446 1.538.2651 2.791.1403 3.592.006.6773.7555 1.7332 1.1387 3.1467 1.1387.8649 0 1.8643-.143 2.969-.4278.0068-.0019.77-.2138 1.6056-.543 1.343-.5292 2.0343-1.0208 2.3126-1.6466.1836-.4129.171-.8577-.037-1.25a1.4685 1.4685 0 0 0-.0626-.1056c.346-.525.2795-1.0346.2149-1.2793-.0826-.3122-.2525-.5714-.4844-.7579.11-.1816.1831-.3788.2148-.5977.0669-.4595-.0862-.9193-.4316-1.293-.2688-.2913-.6495-.4513-1.0704-.4513-.0209 0-.0376.0008-.0588.0018.3162-.9966.4846-2.0518.4846-3.1523 0-5.807-4.7362-10.5144-10.5789-10.5144-5.8426 0-10.5788 4.7073-10.5788 10.5144Zm10.5788-9.4831c5.2727 0 9.5476 4.246 9.5476 9.483a9.4201 9.4201 0 0 1-.2696 2.2365c-.0039-.0047-.0079-.011-.0117-.0156-.274-.3255-.6679-.5059-1.1075-.5059-.352 0-.714.1155-1.0763.3438-.2403.1517-.5058.422-.7793.7598-.2534-.3492-.608-.5832-1.0137-.6465a1.5174 1.5174 0 0 0-.2344-.0176c-.9263 0-1.4828.7993-1.6935 1.5177-.1046.2426-.6065 1.3482-1.3614 2.0978-1.1681 1.1601-1.4458 2.3534-.8396 3.6382-.843.1029-1.5836.0927-2.365-.006.5906-1.212.3626-2.4388-.8426-3.6322-.755-.7496-1.2568-1.8552-1.3614-2.0978-.2107-.7184-.7673-1.5177-1.6935-1.5177-.078 0-.1568.0054-.2344.0176-.4057.0633-.7604.2973-1.0137.6465-.2735-.3379-.539-.6081-.7794-.7598-.3622-.2283-.7243-.3438-1.0762-.3438-.4266 0-.8094.171-1.0821.4786a9.4208 9.4208 0 0 1-.2598-2.1936c0-5.237 4.2749-9.483 9.5475-9.483zM8.6443 7.0036c-.4838.0043-.9503.2667-1.1934.7227-.3536.6633-.1006 1.4873.5645 1.84.351.1862.4883-.5261.836-.6485.3107-.1095.841.399 1.0078.086.3536-.6634.1025-1.4874-.5625-1.84a1.3659 1.3659 0 0 0-.6524-.1602Zm6.8403 0c-.2199-.002-.4426.05-.6504.1602-.665.3526-.9181 1.1766-.5645 1.84.1669.313.6971-.1955 1.0079-.086.3476.1224.4867.8347.838.6485.6649-.3527.916-1.1767.5624-1.84-.243-.456-.7096-.7184-1.1934-.7227Zm-9.7565 1.418a.8768.8768 0 0 0-.877.877c0 .4846.3925.877.877.877a.8768.8768 0 0 0 .877-.877.8768.8768 0 0 0-.877-.877zm12.6434 0c-.4845 0-.879.3925-.879.877 0 .4846.3945.877.879.877a.8768.8768 0 0 0 .877-.877.8768.8768 0 0 0-.877-.877zM8.7927 11.459c-.179-.003-.2793.1107-.2793.416 0 .8097.3874 2.125 1.4279 2.924.207-.7123 1.3453-1.2832 1.5079-1.2012.2315.1167.2191.4417.6074.7266.3884-.285.374-.6098.6056-.7266.1627-.082 1.3009.4889 1.5079 1.2012 1.0404-.799 1.4278-2.1144 1.4278-2.924 0-1.2212-1.583.6402-3.5413.6485-1.4686-.0061-2.7266-1.0558-3.2639-1.0645zM4.312 14.4768c.5792.365 1.6964 2.2751 2.1056 3.0177.1371.2488.371.3536.582.3536.4188 0 .7465-.4138.0391-.9395-1.0636-.791-.6914-2.0846-.1836-2.1642a.4302.4302 0 0 1 .0664-.004c.4616 0 .666.7892.666.7892s.5959 1.4898 1.6213 2.508c.942.9356 1.062 1.703.4961 2.6661-.0164-.004-.0159.0236-.1484.2149-.1853.2673-.4322.4688-.7188.6152-.5062.2269-1.1397.2696-1.7833.2696-1.037 0-2.1017-.1824-2.6975-.336-.0293-.0075-3.6505-.9567-3.1916-1.8224.0771-.1454.2033-.2031.3633-.2031.6463 0 1.823.9551 2.3283.9551.113 0 .196-.0865.2285-.2031.2249-.8045-3.2787-1.0522-2.9846-2.1642.0519-.1967.193-.2757.3907-.2754.854 0 2.7704 1.4923 3.172 1.4923.0307 0 .0525-.0085.0645-.0274.2012-.3227.1096-.5865-1.3087-1.4395-1.4182-.8533-2.4315-1.329-1.8653-1.9416.0651-.0707.1574-.1015.2695-.1015.8611.0002 2.8948 1.84 2.8948 1.84s.5487.5683.8809.5683c.0762 0 .1416-.0315.1855-.1054.2355-.3946-2.1858-2.2183-2.3224-2.971-.0926-.51.0641-.7676.3555-.7676-.0006.008.1701-.0285.4942.1759zm16.2257.5918c-.1366.7526-2.5579 2.5764-2.3224 2.9709.044.074.1092.1055.1855.1055.3321 0 .881-.5684.881-.5684s2.0336-1.8397 2.8947-1.84c.1121 0 .2044.0308.2695.1016.5662.6125-.447 1.0882-1.8653 1.9415-1.4183.853-1.51 1.1168-1.3087 1.4396.012.0188.0337.0273.0644.0273.4016 0 2.3181-1.4923 3.1721-1.4923.1977-.0002.3388.0787.3907.2754.294 1.112-3.2095 1.3597-2.9846 2.1642.0325.1166.1156.2032.2285.2032.5054 0 1.682-.9552 2.3283-.9552.16 0 .2862.0577.3633.2032.459.8656-3.1623 1.8149-3.1916 1.8224-.5958.1535-1.6605.336-2.6975.336-.6351 0-1.261-.0409-1.7638-.2599-.2949-.1472-.5488-.3516-.7383-.625-.0411-.0682-.1026-.1476-.1426-.205-.5726-.9679-.455-1.7371.4903-2.676 1.0254-1.0182 1.6212-2.508 1.6212-2.508s.2044-.7891.666-.7891a.4318.4318 0 0 1 .0665.0039c.5078.0796.88 1.3732-.1836 2.1642-.7074.5257-.3797.9395.039.9395.211 0 .445-.1047.5821-.3535.4092-.7426 1.5264-2.6527 2.1056-3.0178.5588-.3524.99-.1816.8497.5918z"/></svg></a>
+          <a class="icon-link" href="mailto:xuewei.zhong02@gmail.com" aria-label="Email" title="xuewei.zhong02@gmail.com"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="currentColor"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/></svg></a>
         </div>
       </div>
 
       <!-- Right column: headshot -->
       <div class="hero-photo">
-        <!-- TODO: when you have a photo, replace the div below with:
-             <img src="assets/headshot.jpg" alt="Xuewei Zhong" class="photo"> -->
-        <div class="photo-placeholder">XZ</div>
+        <img src="assets/headshot.jpg" alt="Portrait of Xuewei Zhong" class="photo" width="290" height="290">
       </div>
 
     </div>
   </header>
 
+  <!-- ===================== About: short journey in plain paragraphs ===================== -->
+  <section id="about" class="section">
+    <div class="container about-grid">
+      <div>
+        <p class="section-label">01 — About</p>
+        <h2>Hi, I'm Xuewei.</h2>
+      </div>
+      <div class="about-text">
+        <p>I've always worked close to data. After a bachelor's in economics, I spent five years in
+        insurance and credit risk, tracking loan performance across lending partners, underwriting loans,
+        and turning data into risk decisions.</p>
+        <p>In 2023 I started an M.S. in Statistics at San José State, focused on statistical modeling,
+        machine learning, and data science. It was the same year generative AI went mainstream, and AI
+        quickly became part of how I study, work, and live.</p>
+        <p>My machine learning and deep learning courses are what made me curious about AI. I realized that
+        the statistics I was learning, from probability to model evaluation, is the foundation AI is built on.</p>
+        <p>For me, 2026 has been the year of AI agents. At Venera&nbsp;AI, I've had the chance to learn by
+        building, from scratch: designing the architecture of a Slack agent now used across the company,
+        and working with agents every day.</p>
+        <p class="open-to">I'm still digging deeper into statistics, machine learning, and AI, and I always
+        enjoy talking with people who work on similar problems.
+        <a class="inline-link" href="mailto:xuewei.zhong02@gmail.com">Say hello →</a></p>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ Placeholder sections (built in Step 2+) ============ -->
-  <section id="projects" class="section">
+  <section id="projects" class="section section-tint">
     <div class="container">
       <div class="section-head">
-        <p class="section-label">01 — Selected work</p>
-        <h2>Systems I've built</h2>
-        <p class="section-sub">From a production AI agent to research on auction design. Each project opens into a short case study.</p>
+        <p class="section-label">02 — Selected work</p>
+        <h2>What I've built and explored</h2>
+        <p class="section-sub">One AI system in production at work, plus research and course projects where I learned to build models and test them. Each opens into a short case study.</p>
       </div>
 
+      <p class="group-label">In production</p>
       <!-- Featured card: Viki (the one production system) -->
       <a href="projects/viki.html" class="card card-featured">
         <div>
-          <p class="card-kicker">Featured · In production</p>
+          <p class="card-kicker">01 · Production · Venera AI</p>
           <h3>Viki — an AI agent for the whole company's Slack</h3>
           <p class="card-hook">Answers "who owns this, and where is it?" across 145+ GitHub repos, Linear, Slack, Drive, Figma, and Canva.</p>
 
@@ -117,15 +141,13 @@
         </div>
       </a>
 
-      <!-- Three secondary cards -->
-      <div class="card-grid">
-
-        <a href="projects/fine-tuning.html" class="card">
-          <p class="card-kicker">02 · LLM engineering</p>
-          <h3>End-to-end LLM fine-tuning &amp; serving</h3>
-          <p class="card-hook">Can a small open model replace a paid API? I built the pipeline to find out.</p>
-          <span class="metric">61% → 86%</span>
-          <span class="metric-label">groundedness after LoRA fine-tuning</span>
+      <p class="group-label">Research &amp; coursework</p>
+      <!-- Projects 02-04: full-width rows (text left, key result right) -->
+      <a href="projects/fine-tuning.html" class="card card-row">
+        <div class="row-main">
+          <p class="card-kicker">02 · Research at work · LLMs</p>
+          <h3>Can a small open model replace a paid API?</h3>
+          <p class="card-hook">An exploratory project: I built a small fine-tuning and serving pipeline end to end to test the idea on a 1.5B model.</p>
           <div class="tags">
             <span class="tag">LoRA</span>
             <span class="tag">Hugging Face</span>
@@ -133,53 +155,168 @@
             <span class="tag">GKE</span>
           </div>
           <span class="card-link">Read case study →</span>
-        </a>
+        </div>
+        <div class="row-metric">
+          <span class="metric">61% → 86%</span>
+          <span class="metric-label">groundedness after LoRA fine-tuning</span>
+          <span class="row-proof">2.4× faster · 3.1× smaller after 4-bit quantization</span>
+        </div>
+      </a>
 
-        <a href="projects/ethereum-auctions.html" class="card">
+      <a href="projects/ethereum-auctions.html" class="card card-row">
+        <div class="row-main">
           <p class="card-kicker">03 · Research · Finance</p>
           <h3>Execution auctions — Ethereum Foundation × SJSU</h3>
-          <p class="card-hook">Can a sealed auction take away the edge of the fastest bidders? Calibrated on real block-auction data.</p>
-          <span class="metric">~1.7x → even</span>
-          <span class="metric-label">fast builder's profit edge, open vs. sealed auction (simulation)</span>
+          <p class="card-hook">Can a sealed auction take away the edge of the fastest bidders? I analyzed real block-auction data in BigQuery to set up the simulation.</p>
           <div class="tags">
             <span class="tag">SQL (BigQuery)</span>
             <span class="tag">Simulation</span>
             <span class="tag">Market design</span>
           </div>
           <span class="card-link">Read case study →</span>
-        </a>
+        </div>
+        <div class="row-metric">
+          <span class="metric">+70% → ~0%</span>
+          <span class="metric-label">extra profit for the fast bidder: open auction vs. sealed auction</span>
+          <span class="row-proof">Real data: 1,000x total profit gap, only 1.4x per block won</span>
+        </div>
+      </a>
 
-        <a href="projects/hotel-recommender.html" class="card">
+      <a href="projects/hotel-recommender.html" class="card card-row">
+        <div class="row-main">
           <p class="card-kicker">04 · Data science</p>
           <h3>Hotel recommender system</h3>
-          <p class="card-hook">Do review sentiment and timing make recommendations better?</p>
-          <span class="metric">−11–15%</span>
-          <span class="metric-label">RMSE vs. SVD, on ~12M reviews</span>
+          <p class="card-hook">Do review sentiment and timing make recommendations better? I compared three model families to find out.</p>
           <div class="tags">
             <span class="tag">TensorFlow</span>
             <span class="tag">Recommenders</span>
             <span class="tag">Feature engineering</span>
           </div>
           <span class="card-link">Read case study →</span>
-        </a>
+        </div>
+        <div class="row-metric">
+          <span class="metric">−11–15%</span>
+          <span class="metric-label">RMSE vs. SVD baseline</span>
+          <span class="row-proof">~12M reviews · better in all 3 user segments</span>
+        </div>
+      </a>
 
+      <!-- Smaller projects: one line each -->
+      <h3 class="more-title">More projects</h3>
+      <div class="more-grid">
+        <div class="card card-sm">
+          <p class="card-kicker">Research at work · Healthcare data</p>
+          <h4>Sleep data → disease-risk API</h4>
+          <p class="card-hook">Adapted a Nature Medicine sleep foundation model into a pipeline that turns raw sleep recordings into ICD-10-coded risk for 1,065 conditions.</p>
+          <div class="tags"><span class="tag">PyTorch</span><span class="tag">Survival analysis</span></div>
+        </div>
+        <a href="https://github.com/VerityZ/pest-image-classification-vgg16" target="_blank" rel="noopener" class="card card-sm">
+          <p class="card-kicker">Computer vision · SJSU</p>
+          <h4>Pest image classification</h4>
+          <p class="card-hook">Transfer learning with VGG16 on 9 pest classes: ~98% validation accuracy vs. ~95% for a custom CNN baseline.</p>
+          <div class="tags"><span class="tag">TensorFlow / Keras</span><span class="tag">Transfer learning</span></div>
+          <span class="card-link">GitHub ↗</span>
+        </a>
       </div>
     </div>
   </section>
 
-  <section id="focus" class="section section-tint">
+  <!-- ===================== Experience ===================== -->
+  <section id="experience" class="section">
     <div class="container">
-      <p class="section-label">02 — What I work on</p>
-      <h2>Focus areas go here (Step 3)</h2>
+      <div class="section-head">
+        <p class="section-label">03 — Experience</p>
+        <h2>Where I've worked</h2>
+      </div>
+
+      <div class="xp">
+        <div class="xp-item">
+          <div class="xp-when">Mar 2026 – now<span>Remote</span>
+            <img src="assets/logos/venera.png" alt="Venera AI logo" class="xp-logo xp-logo-square" width="48" height="48"></div>
+          <div class="xp-body">
+            <h3>Venera AI</h3>
+            <p class="xp-role">AI Engineer · leads a team of 3–5</p>
+            <p>Built and run Viki, the company's AI agent in Slack, and explore LLM fine-tuning and healthcare data projects. <a class="inline-link" href="projects/viki.html">See Viki →</a></p>
+          </div>
+        </div>
+
+        <div class="xp-item xp-edu">
+          <div class="xp-when">Aug 2023 – Dec 2025<span>San Jose, CA</span></div>
+          <div class="xp-body">
+            <h3>San José State University</h3>
+            <p class="xp-role">M.S. in Statistics · full-time study</p>
+          </div>
+        </div>
+
+        <div class="xp-item">
+          <div class="xp-when">Jun 2017 – Nov 2022<span>Shenzhen, China</span>
+            <img src="assets/logos/ccic.png" alt="China Continent Insurance logo" class="xp-logo xp-logo-wide"></div>
+          <div class="xp-body">
+            <h3>China Continent Property &amp; Casualty Insurance</h3>
+            <p class="xp-role">Subsidiary of China Re</p>
+            <ol class="xp-roles">
+              <li><b>Credit Insurance Sales Manager</b><span>2021 – 2022</span></li>
+              <li><b>Sales Operations Manager</b><span>2020 – 2021</span></li>
+              <li><b>Key Account Manager</b><span>2018 – 2020</span></li>
+              <li><b>Claims Specialist</b><span>2017</span></li>
+            </ol>
+            <ul class="xp-points">
+              <li>Co-launched a pilot credit insurance line for consumer and SME loans that HQ scaled nationwide in 2020, after it secured RMB 10B+ in bank credit lines.</li>
+              <li>Ran first-pass due diligence on 25+ lending partners with vintage analysis, financials, and on-site risk-system reviews.</li>
+              <li>Underwrote secured SME loans end to end: ~$8M financed with no default claims through Nov 2022.</li>
+              <li>Selected as core staff for a new department; onboarded and trained 7 new hires.</li>
+            </ul>
+            <!-- DRAFT PLACEHOLDER (hidden): partners & more detail go here.
+            <div class="xp-placeholder">Partners &amp; more detail: to be added</div> -->
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section id="about" class="section">
+  <section id="skills" class="section">
     <div class="container">
-      <p class="section-label">03 — About</p>
-      <h2>About + life photos go here (Step 3)</h2>
+      <div class="section-head">
+        <p class="section-label">04 — Skills</p>
+        <h2>What I work with</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h3>Languages &amp; data</h3>
+          <div class="tags"><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">R</span><span class="tag">pandas</span><span class="tag">NumPy</span><span class="tag">Data visualization</span></div>
+        </div>
+        <div class="skill-group">
+          <h3>LLM &amp; GenAI</h3>
+          <div class="tags"><span class="tag">RAG</span><span class="tag">Fine-tuning (LoRA, PEFT)</span><span class="tag">Knowledge distillation</span><span class="tag">Quantization (GGUF, llama.cpp)</span></div>
+        </div>
+        <div class="skill-group">
+          <h3>Statistics &amp; evaluation</h3>
+          <div class="tags"><span class="tag">Hypothesis testing</span><span class="tag">Regression analysis</span><span class="tag">LLM-as-a-judge</span><span class="tag">Error analysis</span></div>
+        </div>
+        <div class="skill-group">
+          <h3>Machine learning</h3>
+          <div class="tags"><span class="tag">PyTorch</span><span class="tag">Hugging Face</span><span class="tag">scikit-learn</span><span class="tag">Recommender systems</span><span class="tag">Clustering &amp; PCA</span><span class="tag">Transfer learning</span></div>
+        </div>
+        <div class="skill-group">
+          <h3>Infra &amp; cloud</h3>
+          <div class="tags"><span class="tag">Azure OpenAI</span><span class="tag">Docker</span><span class="tag">Kubernetes (GKE)</span><span class="tag">CI/CD (GitHub Actions)</span></div>
+        </div>
+        <div class="skill-group">
+          <h3>Domain</h3>
+          <div class="tags"><span class="tag">Credit risk &amp; underwriting</span><span class="tag">Vintage / cohort analysis</span><span class="tag">Insurance claims &amp; fraud review</span><span class="tag">Healthcare data</span></div>
+        </div>
+      </div>
     </div>
   </section>
+
+  <!-- HIDDEN until life photos are ready:
+  <section id="life" class="section">
+    <div class="container">
+      <p class="section-label">05 — Beyond work</p>
+      <h2>Life photos go here (next step)</h2>
+    </div>
+  </section>
+  -->
 
   <!-- ===================== Footer ===================== -->
   <footer class="footer">

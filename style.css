@@ -508,3 +508,237 @@ table.data td:not(:first-child), table.data th:not(:first-child) { text-align: r
 }
 /* Single figures stay compact; side-by-side figures fill their column */
 .case-body > .fig { max-width: 520px; }
+
+/* =========================================================
+   13. Smaller headshot (Harrison-style: text leads, photo supports)
+   ========================================================= */
+@media (min-width: 761px) { .hero-inner { grid-template-columns: 1.8fr 1fr; } }  /* desktop only */
+.photo, .photo-placeholder { width: 200px; height: 200px; box-shadow: 0 0 0 5px var(--white), 0 0 0 7px var(--lime); }
+@media (max-width: 760px) {
+  .photo, .photo-placeholder { width: 128px; height: 128px; }
+  .hero-photo { justify-content: flex-start; }   /* align with the text on phones */
+}
+
+/* =========================================================
+   14. Wider layout, hero intro, row cards, "More projects"
+   ========================================================= */
+:root { --max-width: 1200px; }
+@media (min-width: 761px) { .hero-inner { grid-template-columns: 3fr 1fr; gap: 48px; } }
+.tagline { margin-bottom: 16px; max-width: 60ch; }
+.intro { color: var(--text-muted); max-width: 64ch; margin-bottom: 28px; }
+
+/* Full-width project rows: story on the left, key result on the right */
+.card-row {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.card-row .card-hook { max-width: 60ch; }
+.card-row .tags { margin-bottom: 14px; }
+.row-metric { border-left: 1px solid var(--border); padding-left: 32px; }
+.row-metric .metric-label { margin-bottom: 10px; }
+.row-proof { display: block; font-size: 0.85rem; color: var(--text); }
+
+/* Smaller one-line projects */
+.more-title { font-size: 1rem; margin: 40px 0 12px; }
+.more-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.card-sm { padding: 20px 22px; }
+.card-sm h4 { font-size: 1.05rem; margin-bottom: 6px; }
+.card-sm .card-hook { font-size: 0.92rem; margin-bottom: 12px; }
+.card-sm .tags { margin-bottom: 8px; }
+div.card-sm:hover { transform: none; border-color: var(--border); box-shadow: none; }  /* not clickable */
+
+@media (max-width: 760px) {
+  .card-row { grid-template-columns: 1fr; gap: 20px; }
+  .row-metric { border-left: 0; border-top: 1px solid var(--border); padding: 16px 0 0; }
+  .more-grid { grid-template-columns: 1fr; }
+}
+
+/* =========================================================
+   15. Hero spacing, icon links, project groups, skills grid
+   ========================================================= */
+/* Photo sits next to the text instead of at the far edge */
+@media (min-width: 761px) {
+  .hero-inner { grid-template-columns: minmax(0, 700px) auto; justify-content: start; gap: 88px; }
+}
+.intro { max-width: none; }
+
+.socials { align-items: center; gap: 10px; }
+.location {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: var(--text-muted); font-size: 0.9rem; margin-right: 8px;
+}
+.location svg { width: 15px; height: 15px; }
+.icon-link {
+  display: inline-grid; place-items: center;
+  width: 38px; height: 38px;
+  border: 1px solid var(--border); border-radius: 50%;
+  background: var(--white);
+  color: var(--text) !important;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.icon-link svg { width: 17px; height: 17px; }
+.icon-link:hover { border-color: var(--black); background: var(--lime); }
+
+/* "In production" / "Research & coursework" labels */
+.group-label {
+  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 8px 0 10px;
+  display: flex; align-items: center; gap: 10px;
+}
+.group-label::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+.card-featured + .group-label, .card-featured ~ .group-label { margin-top: 32px; }
+
+/* Skills */
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px 32px; }
+.skill-group h3 { font-size: 0.95rem; margin-bottom: 10px; }
+.skill-group .tags { margin-bottom: 0; }
+.skill-group .tag { background: var(--white); }
+@media (max-width: 760px) { .skills-grid { grid-template-columns: 1fr; gap: 20px; } }
+
+/* =========================================================
+   16. Hero balance: roomier text, larger photo centered in its column
+   ========================================================= */
+.hero { padding: 88px 0 80px; }
+@media (min-width: 761px) {
+  .hero-inner { grid-template-columns: minmax(0, 660px) 1fr; justify-content: stretch; gap: 48px; }
+  .hero-photo { justify-content: center; }
+}
+.hero h1 { margin-bottom: 14px; }
+.tagline { font-size: 1.25rem; margin-bottom: 24px; }
+.intro { font-size: 1.02rem; line-height: 1.75; margin-bottom: 36px; }
+.intro p + p { margin-top: 12px; }
+.stats { margin-bottom: 40px; }
+.hero-actions { margin-bottom: 32px; }
+.photo, .photo-placeholder {
+  width: 260px; height: 260px;
+  box-shadow: 0 0 0 6px var(--white), 0 0 0 8px var(--lime), 0 24px 48px rgba(11, 11, 12, 0.10);
+}
+@media (max-width: 760px) {
+  .hero { padding: 40px 0 56px; }
+  .photo, .photo-placeholder { width: 140px; height: 140px; }
+}
+@media (min-width: 761px) { .hero-inner { grid-template-columns: minmax(0, 680px) 1fr; } }
+/* Intro back to normal line spacing, one paragraph */
+.intro { font-size: 1rem; line-height: 1.6; margin-bottom: 32px; }
+/* Slightly larger headshot on desktop */
+@media (min-width: 761px) { .photo, .photo-placeholder { width: 290px; height: 290px; } }
+
+/* =========================================================
+   17. Header monogram (Harrison-style: mark + name + subtitle)
+   ========================================================= */
+.nav-logo { gap: 12px; }
+.logo-badge {
+  display: inline-grid; place-items: center;
+  width: 34px; height: 34px; border-radius: 9px;
+  background: var(--black); color: var(--lime);
+  font-size: 0.8rem; font-weight: 700; letter-spacing: 0.02em;
+}
+.logo-text { display: flex; flex-direction: column; line-height: 1.15; }
+.logo-name { font-weight: 700; font-size: 0.98rem; }
+.logo-sub { font-weight: 500; font-size: 0.74rem; color: var(--text-muted); }
+@media (max-width: 760px) { .logo-sub { display: none; } }
+
+/* Stats: one-line labels, tighter */
+.stats { gap: 28px; }
+.stats span { max-width: none; white-space: nowrap; }
+@media (max-width: 760px) { .stats span { white-space: normal; } }
+
+/* =========================================================
+   18. Simple cover + friendly About section
+   ========================================================= */
+.hero h1 { margin-bottom: 8px; }
+.role { font-size: 1.2rem; font-weight: 600; margin-bottom: 14px; }
+.tagline { font-size: 1.15rem; margin-bottom: 22px; }
+.hero-chips { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+.hero-chips li {
+  font-size: 0.85rem; padding: 6px 12px; border-radius: 999px;
+  background: var(--white); border: 1px solid var(--border);
+}
+.hero { padding: 104px 0 96px; }
+@media (min-width: 761px) { .hero-inner { align-items: center; } }
+
+/* About */
+.lead { font-size: 1.15rem; color: var(--text-muted); margin-top: 8px; }
+.journey { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 36px; }
+.journey-step {
+  position: relative;
+  border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 24px; background: var(--white);
+}
+.journey-step::before {               /* small lime dot = timeline marker */
+  content: ""; position: absolute; top: 28px; right: 24px;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--white); border: 2px solid var(--lime);
+}
+.journey-step.is-now::before { background: var(--lime); }
+.journey-when { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; color: var(--lime-deep); margin-bottom: 8px; }
+.journey-step h3 { font-size: 1.1rem; margin-bottom: 8px; }
+.journey-step p:last-child { color: var(--text-muted); font-size: 0.95rem; }
+.about-stats { margin-bottom: 24px; }
+.open-to { font-weight: 500; }
+
+@media (max-width: 760px) {
+  .journey { grid-template-columns: 1fr; }
+  .hero { padding: 40px 0 56px; }
+}
+
+/* =========================================================
+   19. Cover back to eyebrow + stats; About as plain paragraphs
+   ========================================================= */
+.tagline { font-size: 1.25rem; margin-bottom: 32px; }
+.hero h1 { margin-bottom: 14px; }
+.about-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 48px; align-items: start; }
+.about-text { max-width: 66ch; }
+.about-text p { margin-bottom: 14px; color: rgba(11, 11, 12, 0.82); font-size: 1.02rem; }
+.about-text .open-to { color: var(--text); font-weight: 500; margin-top: 20px; }
+@media (max-width: 760px) { .about-grid { grid-template-columns: 1fr; gap: 12px; } }
+
+/* =========================================================
+   20. Experience timeline
+   ========================================================= */
+.xp { border-left: 2px solid var(--border); margin-left: 6px; }
+.xp-item {
+  position: relative;
+  display: grid; grid-template-columns: 200px 1fr; gap: 32px;
+  padding: 0 0 40px 32px;
+}
+.xp-item:last-child { padding-bottom: 0; }
+.xp-item::before {                       /* timeline dot */
+  content: ""; position: absolute; left: -7px; top: 6px;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--lime); border: 2px solid var(--white); box-shadow: 0 0 0 1px var(--black);
+}
+.xp-when { font-size: 0.9rem; font-weight: 600; }
+.xp-when span { display: block; font-weight: 400; color: var(--text-muted); font-size: 0.85rem; }
+.xp-body h3 { font-size: 1.2rem; margin-bottom: 2px; }
+.xp-role { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px; }
+.xp-body > p { margin-bottom: 10px; }
+.xp-roles { list-style: none; display: grid; gap: 4px; margin-bottom: 16px; font-size: 0.92rem; }
+.xp-roles li { display: flex; justify-content: space-between; max-width: 420px; border-bottom: 1px dashed var(--border); padding-bottom: 4px; }
+.xp-roles span { color: var(--text-muted); }
+.xp-points { padding-left: 18px; display: grid; gap: 6px; color: rgba(11, 11, 12, 0.82); margin-bottom: 16px; }
+.xp-placeholder {
+  border: 1.5px dashed rgba(11, 11, 12, 0.25); border-radius: 10px;
+  padding: 18px; color: var(--text-muted); font-size: 0.88rem; text-align: center;
+}
+@media (max-width: 760px) {
+  .xp-item { grid-template-columns: 1fr; gap: 8px; padding-left: 20px; }
+}
+.xp-body { max-width: 780px; }
+
+/* Logos under the dates; graduate-school entry is lighter */
+.xp-logo { display: block; margin-top: 14px; max-width: 132px; max-height: 44px; object-fit: contain; }
+.xp-logo-ph {
+  width: 132px; height: 44px; display: grid; place-items: center;
+  border: 1.5px dashed rgba(11, 11, 12, 0.25); border-radius: 8px;
+  font-size: 0.72rem; font-weight: 400; color: var(--text-muted);
+}
+.xp-edu { padding-bottom: 32px; }
+.xp-edu::before { background: var(--white); }
+.xp-edu .xp-role { margin-bottom: 0; }
+.xp-logo-square { width: 56px; height: 56px; border-radius: 12px; border: 1px solid var(--border); max-height: none; }
+.xp-logo-wide { width: 150px; height: auto; max-height: none; }
