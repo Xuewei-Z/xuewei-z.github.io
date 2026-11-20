@@ -470,3 +470,41 @@ a { color: inherit; text-decoration: none; }
   .hero { padding: 40px 0 48px; }
   .section { padding: 48px 0; }
 }
+
+/* =========================================================
+   12. Figures and data tables in case studies
+   ========================================================= */
+.fig { margin: 12px 0 16px; }
+.fig img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--white);
+  padding: 8px;
+}
+.fig figcaption, .fig-note { font-size: 0.82rem; color: var(--text-muted); margin-top: 6px; }
+.fig figcaption b { color: var(--text); }
+.fig-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+.fig-grid .fig { margin: 0; }
+
+/* Data table: horizontal scroll on phones instead of overflowing */
+.table-wrap { overflow-x: auto; margin: 8px 0 4px; }
+table.data { width: 100%; border-collapse: collapse; font-size: 0.85rem; font-variant-numeric: tabular-nums; }
+table.data th {
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--black);
+  padding: 6px 8px;
+}
+table.data td { border-bottom: 1px solid var(--border); padding: 8px; white-space: nowrap; }
+table.data td:not(:first-child), table.data th:not(:first-child) { text-align: right; }
+
+@media (max-width: 760px) {
+  .fig-grid { grid-template-columns: 1fr; }
+}
+/* Single figures stay compact; side-by-side figures fill their column */
+.case-body > .fig { max-width: 520px; }

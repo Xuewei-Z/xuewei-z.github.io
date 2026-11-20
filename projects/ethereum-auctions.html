@@ -34,7 +34,7 @@
       <p class="case-lede">An Ethereum Foundation–sponsored research project. I analyzed real block-auction data in BigQuery and used it to set up a simulation of a proposed auction design.</p>
       <dl class="meta">
         <div><dt>My role</dt><dd>Data analysis &amp; simulation setup</dd></div>
-        <div><dt>Team</dt><dd>12 students, 2 PIs</dd></div>
+        <div><dt>Team</dt><dd>7 students, 2 PIs</dd></div>
         <div><dt>Sponsor</dt><dd>Ethereum Foundation</dd></div>
         <div><dt>Year</dt><dd>2025</dd></div>
         <div><dt>Paper</dt><dd><a class="inline-link" href="https://hackmd.io/MVDCR95XQXutuKb1NuTtWw?view" target="_blank" rel="noopener">Read the paper ↗</a></dd></div>
@@ -45,8 +45,8 @@
   <!-- ===================== Case body ===================== -->
   <main class="container">
     <div class="results">
-      <div class="result"><span class="metric">~15%</span><span>profit gap between a slow and a fast builder in the simulated sealed auction</span></div>
-      <div class="result"><span class="metric">216K</span><span>simulated auctions, about one month of Ethereum blocks</span></div>
+      <div class="result"><span class="metric">~1.7x → even</span><span>fast builder's profit edge: open auction vs. sealed auction (simulation)</span></div>
+      <div class="result"><span class="metric">1,000x → 1.4x</span><span>real profit gap between two builders: total vs. per block won</span></div>
       <div class="result"><span class="metric">~90% vs 85–89%</span><span>best bid level in simulation vs. what real builders bid</span></div>
     </div>
 
@@ -54,21 +54,49 @@
       <h2>The question</h2>
       <p>Ethereum sells the right to build each block in a live auction every 12 seconds. Builders with faster connections can wait, watch rivals, and bid at the last moment. These <b>timing games</b> reward speed over skill. <b>Execution auctions</b> propose selling the right in advance through <b>sealed bids</b>, so waiting gains nothing. We tested whether that removes the speed advantage.</p>
 
+      <figure class="fig">
+        <img src="../assets/projects/ethereum/camcos-bids-vs-delay.png" alt="Scatter of bid counts by delay time: bids are sparse before 2 seconds and spike sharply between 2.5 and 3 seconds into the slot." loading="lazy">
+        <figcaption><b>Timing games are real.</b> Bids pile up 2.5–3 seconds into the slot: builders wait, then bid late. Data: 16,355 bids from the public "Latency is Money" dataset.</figcaption>
+      </figure>
+
       <h2>My role</h2>
       <ul>
-        <li><b>Data:</b> queried and analyzed public MEV-Boost auction data in BigQuery.</li>
+        <li><b>Data:</b> queried and analyzed public Ethereum auction data in BigQuery.</li>
         <li><b>Simulation setup:</b> helped design the auction simulation and set its parameters from that analysis.</li>
         <li>The game-theory proofs were led by teammates.</li>
       </ul>
 
       <h2>What the data showed</h2>
-      <p>We compared two contrasting builders over two months. <b>beaverbuild</b> won 131,544 blocks (about 32% of all blocks) and bid with twice the variance; <b>bobTheBuilder</b> won 178. Both bid about 88% of their valuation on average. Their bidding level, variance, and timing became the simulation's inputs.</p>
+      <p>Out of 82 builders that won blocks, we picked two with contrasting styles:</p>
+      <div class="table-wrap">
+        <table class="data">
+          <thead><tr><th>Builder</th><th>Blocks won</th><th>Avg. bid / value</th><th>Bid std. dev.</th><th>Total profit (ETH)</th><th>Profit per block (ETH)</th></tr></thead>
+          <tbody>
+            <tr><td>beaverbuild</td><td>131,544</td><td>0.89</td><td>0.42</td><td>3,037.32</td><td><b>0.023</b></td></tr>
+            <tr><td>bobTheBuilder</td><td>178</td><td>0.85</td><td>0.33</td><td>3.03</td><td><b>0.017</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="fig-note">Sources: Google BigQuery public Ethereum datasets; Flashbots Collective, "Block Builder Profitability: Dec 2023 – Feb 2024".</p>
+      <p>beaverbuild's total profit is about 1,000 times larger, but most of that is volume: it won about 740 times more blocks. <b>Per block won, the gap is only about 1.4x.</b> Their bid levels, spread, and timing became the simulation's inputs.</p>
 
       <h2>The simulation</h2>
-      <p>A sealed-bid, first-price auction between a <b>slow</b> builder that bids early and a <b>fast</b> builder that waits and slightly outbids the best bid it has seen, at the risk of missing the cutoff.</p>
+      <p>Two builders compete for 216,000 rounds: a <b>slow</b> one that bids early and a <b>fast</b> one that waits and slightly outbids the best bid it has seen, at the risk of missing the cutoff. We ran the same matchup twice: once with bids visible (today's open auction) and once with <b>sealed</b> bids.</p>
 
-      <h2>Results</h2>
-      <p>Over 216,000 rounds, the slow builder earned only about 15% less than the fast one. Holding the fast builder at a 70% bid, speed only clearly wins when the slow builder bids too little or too much:</p>
+      <div class="fig-grid">
+        <figure class="fig">
+          <img src="../assets/projects/ethereum/camcos-unsealed-1v1.png" alt="Line chart, open auction: the fast builder's profit stays near 2,400 and the slow builder's near 1,400 until the fast builder starts missing the cutoff around 0.7." loading="lazy">
+          <figcaption><b>Open auction:</b> the fast builder (orange) earns about 2,400 vs. 1,400 for the slow one.</figcaption>
+        </figure>
+        <figure class="fig">
+          <img src="../assets/projects/ethereum/camcos-sealed-1v1.png" alt="Line chart, sealed auction: both builders earn about 1,950 until the fast builder starts missing the cutoff around 0.7." loading="lazy">
+          <figcaption><b>Sealed auction:</b> both earn about 1,950. Waiting no longer pays.</figcaption>
+        </figure>
+      </div>
+      <p class="fig-note">Both builders bid 70% of their valuation. X-axis: the fast builder's latest submit time; past ~0.7 it starts missing the cutoff and its profit collapses in both formats.</p>
+
+      <h2>When does speed win?</h2>
+      <p>Holding the fast builder at a 70% bid in the sealed auction, speed only clearly wins when the slow builder bids too little or too much. Near 60–70%, the slow builder edges ahead, mostly because the fast one sometimes misses the cutoff.</p>
 
       <figure class="bars" aria-label="Profit advantage by the slow builder's bid proportion">
         <div class="bars-title">Slow builder's bid (as % of valuation) → who earned more, and by how much</div>
@@ -93,10 +121,10 @@
 
       <h2>What this does and doesn't show</h2>
       <div class="callout">
-        <p>The results support, but do not prove, that sealed auctions weaken timing games. Valuations are assumed equal, strategies are simple rules, and two players are a loose stand-in for a real market. The real-world profit gap between the two builders is over 1,000x, but most of it comes from volume: beaverbuild won about 740 times more blocks.</p>
+        <p>The results support, but do not prove, that sealed auctions weaken timing games. Valuations are assumed equal, strategies are simple rules, and two players are a loose stand-in for a real market. In real data we also can't tell "lost the auction" apart from "didn't bid".</p>
       </div>
 
-      <p class="note">SJSU CAMCOS, Fall 2024 &amp; Spring 2025 cohorts · PIs: Dashiell Fryer, Yan X Zhang · Sponsor: Ethereum Foundation · <a class="inline-link" href="https://hackmd.io/MVDCR95XQXutuKb1NuTtWw?view" target="_blank" rel="noopener">Full paper ↗</a></p>
+      <p class="note">SJSU CAMCOS, Spring 2025 · PIs: Dashiell Fryer, Yan X Zhang · Sponsor: Ethereum Foundation · <a class="inline-link" href="https://hackmd.io/MVDCR95XQXutuKb1NuTtWw?view" target="_blank" rel="noopener">Full paper ↗</a></p>
 
       <h2>Stack</h2>
       <div class="tags">
