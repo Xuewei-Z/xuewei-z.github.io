@@ -13,7 +13,7 @@
 
   <!-- All styling lives in style.css -->
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css?v=20261119b">
+  <link rel="stylesheet" href="style.css?v=20261120a">
 </head>
 <body>
 
@@ -104,7 +104,6 @@
         <p class="section-sub">One AI system in production at work, plus research and course projects where I learned to build models and test them. Each opens into a short case study.</p>
       </div>
 
-      <p class="group-label">In production</p>
       <!-- Featured card: Viki (the one production system) -->
       <a href="projects/viki.html" class="card card-featured">
         <div>
@@ -141,25 +140,25 @@
         </div>
       </a>
 
-      <p class="group-label">Research &amp; coursework</p>
       <!-- Projects 02-04: full-width rows (text left, key result right) -->
       <a href="projects/fine-tuning.html" class="card card-row">
         <div class="row-main">
-          <p class="card-kicker">02 · Research at work · LLMs</p>
-          <h3>Can a small open model replace a paid API?</h3>
-          <p class="card-hook">An exploratory project: I built a small fine-tuning and serving pipeline end to end to test the idea on a 1.5B model.</p>
+          <p class="card-kicker">02 · Research at work · LLM fine-tuning</p>
+          <h3>End-to-end LLM fine-tuning &amp; serving pipeline</h3>
+          <p class="card-hook">Fine-tuned Qwen2.5-1.5B with LoRA on a 410-example dataset I built, scored it with a blinded LLM-as-a-judge on groundedness and format, then quantized it to 4-bit GGUF and served it with llama.cpp behind RAG.</p>
+          <p class="mini-pipeline"><span>Crawl &amp; clean</span><i>→</i><span>Dedup &amp; leakage checks</span><i>→</i><span>LoRA SFT</span><i>→</i><span>LLM-as-a-judge eval</span><i>→</i><span>4-bit quantize</span><i>→</i><span>Serve + RAG</span></p>
           <div class="tags">
-            <span class="tag">LoRA</span>
-            <span class="tag">Hugging Face</span>
-            <span class="tag">LLM-as-a-judge</span>
-            <span class="tag">GKE</span>
+            <span class="tag">Qwen2.5-1.5B</span>
+            <span class="tag">Hugging Face PEFT</span>
+            <span class="tag">GGUF / llama.cpp</span>
+            <span class="tag">Chroma</span>
           </div>
           <span class="card-link">Read case study →</span>
         </div>
         <div class="row-metric">
           <span class="metric">61% → 86%</span>
           <span class="metric-label">groundedness after LoRA fine-tuning</span>
-          <span class="row-proof">2.4× faster · 3.1× smaller after 4-bit quantization</span>
+          <span class="row-proof">Format compliance 69% → 100%<br>2.4× faster · 3.1× smaller after quantization</span>
         </div>
       </a>
 
@@ -226,7 +225,7 @@
     <div class="container">
       <div class="section-head">
         <p class="section-label">03 — Experience</p>
-        <h2>Where I've worked</h2>
+        <h2>Work &amp; education</h2>
       </div>
 
       <div class="xp">
@@ -245,6 +244,19 @@
           <div class="xp-body">
             <h3>San José State University</h3>
             <p class="xp-role">M.S. in Statistics · full-time study</p>
+            <details class="courses">
+              <summary>Relevant coursework</summary>
+              <dl>
+                <dt>Statistical theory</dt>
+                <dd>Probability · Mathematical Statistics · Stochastic Processes</dd>
+                <dt>Statistical modeling</dt>
+                <dd>Regression Analysis · Experimental Design</dd>
+                <dt>Machine learning</dt>
+                <dd>Machine Learning · Deep Learning (DNN, CNN) · Cluster Analysis</dd>
+                <dt>Data mining &amp; visualization</dt>
+                <dd>Data Mining (recommender systems) · Data Visualization</dd>
+              </dl>
+            </details>
           </div>
         </div>
 
@@ -258,7 +270,7 @@
               <li><b>Credit Insurance Sales Manager</b><span>2021 – 2022</span></li>
               <li><b>Sales Operations Manager</b><span>2020 – 2021</span></li>
               <li><b>Key Account Manager</b><span>2018 – 2020</span></li>
-              <li><b>Claims Specialist</b><span>2017</span></li>
+              <li><b>Claims Specialist</b><span>Jun – Dec 2017</span></li>
             </ol>
             <ul class="xp-points">
               <li>Co-launched a pilot credit insurance line for consumer and SME loans that HQ scaled nationwide in 2020, after it secured RMB 10B+ in bank credit lines.</li>
@@ -268,6 +280,14 @@
             </ul>
             <!-- DRAFT PLACEHOLDER (hidden): partners & more detail go here.
             <div class="xp-placeholder">Partners &amp; more detail: to be added</div> -->
+          </div>
+        </div>
+
+        <div class="xp-item xp-edu">
+          <div class="xp-when">Sep 2013 – Jun 2017<span>Shanghai, China</span></div>
+          <div class="xp-body">
+            <h3>Shanghai Lixin University of Accounting and Finance</h3>
+            <p class="xp-role">Bachelor's in Economics</p>
           </div>
         </div>
       </div>

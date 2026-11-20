@@ -742,3 +742,31 @@ div.card-sm:hover { transform: none; border-color: var(--border); box-shadow: no
 .xp-edu .xp-role { margin-bottom: 0; }
 .xp-logo-square { width: 56px; height: 56px; border-radius: 12px; border: 1px solid var(--border); max-height: none; }
 .xp-logo-wide { width: 150px; height: auto; max-height: none; }
+
+/* =========================================================
+   21. Fine-tuning mini pipeline + expandable coursework
+   ========================================================= */
+.mini-pipeline { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; font-size: 0.78rem; margin: -6px 0 14px; color: var(--text-muted); }
+.mini-pipeline span { border: 1px solid var(--border); border-radius: 6px; padding: 2px 8px; background: var(--white); color: var(--text); }
+.mini-pipeline i { font-style: normal; color: var(--lime-deep); }
+.xp-edu + .xp-item { padding-top: 0; }
+.xp-item.xp-edu:last-child::before { background: var(--white); }
+
+.courses { margin-top: 10px; }
+.courses summary {
+  cursor: pointer; list-style: none;
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.88rem; font-weight: 600;
+  border-bottom: 2px solid var(--lime);
+}
+.courses summary::-webkit-details-marker { display: none; }
+.courses summary::after { content: "+"; font-weight: 600; color: var(--lime-deep); }
+.courses[open] summary::after { content: "–"; }
+.courses dl {
+  margin-top: 12px; padding: 16px 18px;
+  border: 1px solid var(--border); border-radius: 10px; background: var(--white);
+  display: grid; grid-template-columns: 200px 1fr; gap: 8px 20px; font-size: 0.9rem;
+}
+.courses dt { font-weight: 600; }
+.courses dd { color: rgba(11, 11, 12, 0.78); }
+@media (max-width: 760px) { .courses dl { grid-template-columns: 1fr; gap: 2px; } .courses dd { margin-bottom: 8px; } }
