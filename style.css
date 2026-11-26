@@ -814,3 +814,9 @@ a.logo-tile:hover { border-color: var(--lime); transform: translateY(-2px); }
 /* About: tighter line and paragraph spacing */
 .about-text p { line-height: 1.5; margin-bottom: 10px; }
 .about-text .about-close { margin-top: 14px; }
+
+/* Titles under the name: same color and letterforms as the eyebrow, larger */
+.hero h1 { margin-bottom: 10px; }
+.hero-titles { font-size: 1.05rem; letter-spacing: 0.07em; margin-bottom: 18px; }
+@media (max-width: 760px) { .hero-titles { font-size: 0.92rem; } }
+.hero-titles span { white-space: nowrap; }
