@@ -770,3 +770,43 @@ div.card-sm:hover { transform: none; border-color: var(--border); box-shadow: no
 .courses dt { font-weight: 600; }
 .courses dd { color: rgba(11, 11, 12, 0.78); }
 @media (max-width: 760px) { .courses dl { grid-template-columns: 1fr; gap: 2px; } .courses dd { margin-bottom: 8px; } }
+
+/* =========================================================
+   22. Partner institutions (collapsible, grouped name tiles)
+   ========================================================= */
+.partners { margin-top: 4px; }
+.partner-box { margin-top: 12px; padding: 16px 18px; border: 1px solid var(--border); border-radius: 10px; background: var(--white); }
+.partner-note { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px; }
+.partner-box h4 { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--lime-deep); margin: 4px 0 8px; }
+.partner-list { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; margin-bottom: 14px; }
+.partner-list:last-child { margin-bottom: 0; }
+.partner-list li {
+  border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px;
+  display: flex; flex-direction: column; gap: 2px; background: var(--tint);
+}
+.partner-list b { font-size: 0.86rem; }
+.partner-list span { font-size: 0.78rem; color: var(--text-muted); }
+
+/* Partner logo wall: uniform tiles, logos keep their own colors */
+.logo-wall { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin-bottom: 14px; }
+.logo-wall:last-child { margin-bottom: 0; }
+.logo-tile {
+  height: 72px; display: grid; place-items: center; padding: 10px 14px;
+  border: 1px solid var(--border); border-radius: 10px; background: var(--white);
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.logo-tile img { max-width: 100%; max-height: 52px; width: auto; height: auto; object-fit: contain; }
+a.logo-tile:hover { border-color: var(--lime); transform: translateY(-2px); }
+
+/* Smaller partner logos: a compact row instead of big tiles */
+.logo-wall { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
+.logo-tile { height: 40px; padding: 6px 10px; border-radius: 8px; }
+.logo-tile img { max-height: 26px; max-width: 104px; }
+
+/* About: closing line stands out a little */
+.about-text .about-close { color: var(--text); font-weight: 500; margin-top: 18px; }
+
+/* About: justified on wider screens; left-aligned on phones to avoid wide gaps */
+@media (min-width: 761px) {
+  .about-text p { text-align: justify; hyphens: none; }
+}
