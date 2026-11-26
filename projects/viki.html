@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Viki — an AI agent for the whole company's Slack — Xuewei Zhong</title>
-  <meta name="description" content="An internal Slack agent that answers project and status questions across GitHub (145+ repos), Linear, Slack, Google Drive &amp; Workspace, Figma, and Canva.">
+  <meta name="description" content="An internal Slack agent that answers questions from company-wide knowledge, connected to several sources: code, tickets, chat, docs, and design files.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -31,12 +31,11 @@
   <header class="case-hero">
     <div class="container">
       <p class="crumbs"><a href="../index.html">Home</a> / <a href="../index.html#projects">Projects</a> / Viki</p>
-      <p class="eyebrow">Featured · In production · Venera AI</p>
+      <p class="eyebrow">Production · Venera AI</p>
       <h1>Viki — an AI agent for the whole company's Slack</h1>
-      <p class="case-lede">An internal Slack agent that answers project and status questions across GitHub (145+ repos), Linear, Slack, Google Drive &amp; Workspace, Figma, and Canva.</p>
+      <p class="case-lede">An internal Slack agent that answers questions from company-wide knowledge, connected to several sources: code, tickets, chat, docs, and design files.</p>
       <dl class="meta">
-        <div><dt>Role</dt><dd>Owner — design, build, deploy</dd></div>
-        <div><dt>Team</dt><dd>Lead of 3–5</dd></div>
+        <div><dt>Role</dt><dd>Sole developer — design, build, deploy</dd></div>
         <div><dt>Timeline</dt><dd>2026 – present</dd></div>
         <div><dt>Status</dt><dd>In production</dd></div>
       </dl>
@@ -52,10 +51,10 @@
     </div>
 
     <article class="case-body">
-      <p class="note">This is a high-level account. It leaves out internal data, code, and screenshots.</p>
+      <p class="note">Viki is an internal company tool, so this page stays high-level: no internal data, code, or screenshots.</p>
 
       <h2>The problem</h2>
-      <p>Teams work across U.S. and international time zones. Finding out who owns a project, or where it stands, usually meant asking in chat and waiting hours for a reply. The answer was already somewhere — in code, tickets, or past threads — but spread across six tools.</p>
+      <p>Teams work across U.S. and international time zones. Finding out who owns a project, or where it stands, usually meant asking in chat and waiting hours for a reply. The answer already existed, but it was spread across several tools.</p>
 
       <h2>What I built</h2>
       <ul>
@@ -66,8 +65,30 @@
         <li><b>Safe actions:</b> tools exposed through an MCP server, as the base for human-approved actions.</li>
       </ul>
 
+      <h2>How it evolved</h2>
+      <p>I started with the smallest, cheapest test, and scaled up only after each step proved the idea worked.</p>
+      <div class="pipeline" style="margin-bottom:14px"><span class="tag">Local MVP · Ollama</span> <i>→</i> <span class="tag">Cloud GPU · vLLM</span> <i>→</i> <span class="tag">Production · Azure</span></div>
+      <ul>
+        <li><b>Local MVP (Ollama):</b> a 4B model on my own machine, to check whether the approach worked at all, at almost no cost.</li>
+        <li><b>Cloud GPU (vLLM):</b> a 4B model served on a cloud GPU, so multiple users could use it at the same time.</li>
+        <li><b>Production (Azure):</b> DeepSeek-V4-Flash on Azure AI Foundry, with GPT-4.1-mini as a second candidate. The app runs 24/7 on an Azure VM, with a 45-second per-call timeout and a 90-second request budget.</li>
+      </ul>
+
+      <h2>Logging every question</h2>
+      <p>Every question is written to a SQLite log: the rewritten query, the routing decision, retrieved sources, the answer, its outcome, and the tokens and latency of each step. Two design choices keep the data honest:</p>
+      <ul>
+        <li><b>Router and answer costs are stored separately</b>, so a change in routing isn't hidden by the answer numbers.</li>
+        <li><b>Facts and judgements live in separate tables</b>, and raw answers are kept untouched, so any outcome can be recomputed later.</li>
+      </ul>
+
       <h2>How I measured it</h2>
-      <p>Every release is gated by an eval suite (91–94% routing accuracy). I also mine per-query logs to tell real regressions apart from capability gaps — questions the agent was never built to answer.</p>
+      <p>I designed and maintain the evaluation harness. Typed question sets check each answer against expected sources and required or forbidden content. Routing is scored step by step, separately from answer quality, and every release must pass a 16-question regression set.</p>
+      <p>On top of that, I query the log with SQL to find what tests alone can't show:</p>
+      <ul>
+        <li><b>Outcome rates:</b> how often Viki answered, found no context, errored, or timed out.</li>
+        <li><b>Regression or capability gap:</b> when failures rose, unrewritten questions failed 80% of the time and rewritten ones 64%, so query rewriting wasn't the cause. The full history showed those question types had never succeeded: a capability gap, not a regression.</li>
+        <li><b>Latency:</b> identical routing calls ranged from 1.4 to 87.8 seconds. The cause was Azure's shared capacity, not Viki's own traffic.</li>
+      </ul>
 
       <h2>What didn't work</h2>
       <div class="callout">
@@ -75,19 +96,21 @@
       </div>
 
       <h2>Shipping it</h2>
-      <p>Deployed on Azure with FastAPI and Docker. CI/CD on GitHub Actions rolls back automatically if a health check fails. Timeouts and retries handle a high-variance LLM backend.</p>
+      <p>Viki runs as a systemd service on the VM. CI runs linting and tests on every change, and the VM pulls and deploys only commits that pass. Each deploy runs a health check and rolls back automatically if it fails.</p>
 
       <h2>Stack</h2>
       <div class="tags">
         <span class="tag">FastAPI</span>
         <span class="tag">Azure AI Foundry</span>
-        <span class="tag">OpenAI</span>
-        <span class="tag">Tool calling</span>
+        <span class="tag">Azure OpenAI</span>
+        <span class="tag">Ollama</span>
+        <span class="tag">vLLM</span>
         <span class="tag">RAG</span>
         <span class="tag">Embeddings</span>
         <span class="tag">SQLite</span>
-        <span class="tag">Docker</span>
+        <span class="tag">SQL</span>
         <span class="tag">GitHub Actions</span>
+        <span class="tag">systemd</span>
         <span class="tag">MCP</span>
       </div>
 
