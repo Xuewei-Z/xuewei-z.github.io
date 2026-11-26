@@ -810,3 +810,7 @@ a.logo-tile:hover { border-color: var(--lime); transform: translateY(-2px); }
 @media (min-width: 761px) {
   .about-text p { text-align: justify; hyphens: none; }
 }
+
+/* About: tighter line and paragraph spacing */
+.about-text p { line-height: 1.5; margin-bottom: 10px; }
+.about-text .about-close { margin-top: 14px; }
